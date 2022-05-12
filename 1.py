@@ -38,10 +38,9 @@ def shedule(message):
 		day)
 
 
-@bot.message_handler(commands = ['Text'])
+@bot.message_handler(commands = ['Add'])
 def get_message(message):
-	global day
-	bot.send_message(message.chat.id,"Enter day")
+	bot.send_message(message.chat.id,"Enter day and amount of lessons")
 
 	@bot.message_handler(content_types=['text'])
 	def get_message(message):
