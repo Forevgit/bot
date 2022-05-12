@@ -70,8 +70,12 @@ def shedule(message):
 @bot.message_handler(commands = ['Text'])
 def get_message(message):
 	global day
-	day = bot.message.Text
+	bot.send_message(message.chat.id,"Enter day")
 
+	@bot.message_handler(content_types=['text'])
+	def get_message(message):
+		day = message.text
+		bot.send_message(message.chat.id,day)
 
 
 
