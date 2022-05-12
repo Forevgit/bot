@@ -32,35 +32,6 @@ def info(message):
 		"!!!")
 
 
-
-
-#@bot.message_handler(commands = ['add'])
-#def add(message):
-#	bot.send_message(message.chat.id,
-#		"!!!")
-
-
-#@bot.message_handler(commands = ['add'])
-# def bot.send_messasge("input time , subject (TO STOP TYPE "STOP")")
-#
-#
-#   if(bot.message.Text()=="stop")
-#     break
-#
-#
-#  lst=bot.message.Text()
-#
-day = ''
-time = 0
-subject = ''
-message= ''
-lst=('asd')
-#@bot.message_handler(commands = ['Add'])
-#def get_message(str: message):
-#	bot.send_message(message.chat.id, 
-#		 "day, time, subject")
-#	lst = message.text(message)
-
 @bot.message_handler(commands = ['Shedule'])
 def shedule(message):
 	bot.send_message(message.chat.id,
