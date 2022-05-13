@@ -4,6 +4,8 @@ import requests
 
 from telebot import types
 
+
+
 API_TOKEN = '5371686399:AAEnXevd0OcJsHeNmB5DFflPQ3K_91jPwv0'
 
 bot = telebot.TeleBot(API_TOKEN)
@@ -37,7 +39,8 @@ def shedule(message):
 	bot.send_message(message.chat.id,
 		day)
 
-dict = []
+
+
 @bot.message_handler(commands = ['Add'])
 def get_message(message):
 	bot.send_message(message.chat.id,"Enter day:")
@@ -46,14 +49,26 @@ def get_message(message):
 	@bot.message_handler(content_types=['text'])
 	def get_message(message):
 		bot.send_message(message.chat.id,"Enter amount  lessons")
-		amount = message.text
-		if message.text == int:
+		amount = int(message.text)
+	
+		7
+		
 			@bot.message_handler(content_types=['text'])
 			def get_message(message):
-				amount = message.text
-				for i in amount:
+				
+
+
+				for i in range(amount):
+				
 					bot.send_message(message.chat.id,"Enter lessons")
-					dict = message.text
+					lesson=message.text
+					
+					bot.send_message(message.chat.id,"Enter time")
+					
+					dct_lessons[lesson]=message.text
+
+					
+
 				bot.send_message(message.chat.id, dict)
 			
 
