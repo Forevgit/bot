@@ -37,16 +37,25 @@ def shedule(message):
 	bot.send_message(message.chat.id,
 		day)
 
-
+dict = []
 @bot.message_handler(commands = ['Add'])
 def get_message(message):
-	bot.send_message(message.chat.id,"Enter day and amount of lessons")
-
+	bot.send_message(message.chat.id,"Enter day:")
+	day = message.text
+	
 	@bot.message_handler(content_types=['text'])
 	def get_message(message):
-		day = message.text
-		bot.send_message(message.chat.id,day)
-
+		bot.send_message(message.chat.id,"Enter amount  lessons")
+		amount = message.text
+		if message.text == int:
+			@bot.message_handler(content_types=['text'])
+			def get_message(message):
+				amount = message.text
+				for i in amount:
+					bot.send_message(message.chat.id,"Enter lessons")
+					dict = message.text
+				bot.send_message(message.chat.id, dict)
+			
 
 
 
