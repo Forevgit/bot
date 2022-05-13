@@ -1,4 +1,4 @@
-import telebot
+import telebot 
 
 import requests
 
@@ -6,9 +6,11 @@ from telebot import types
 
 
 
+
 API_TOKEN = '5371686399:AAEnXevd0OcJsHeNmB5DFflPQ3K_91jPwv0'
 
 bot = telebot.TeleBot(API_TOKEN)
+
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
@@ -43,33 +45,52 @@ def shedule(message):
 
 @bot.message_handler(commands = ['Add'])
 def get_message(message):
-	bot.send_message(message.chat.id,"Enter day:")
-	day = message.text
 	
+	bot.send_message(message.chat.id,"Enter day:")
 	@bot.message_handler(content_types=['text'])
 	def get_message(message):
-		bot.send_message(message.chat.id,"Enter amount  lessons")
-		amount = int(message.text)
-	
-		7
+		print(1)
+
 		
-			@bot.message_handler(content_types=['text'])
-			def get_message(message):
-				
+		day = message.text
+
+		bot.send_message(message.chat.id,"Enter amount  lessons")
+		
+		bot.register_next_step_handler(message,amount_lessons_getter)
+	
+	def amount_lessons_getter(message):
+		print(2)
+		
+		
+		amount = int(message.text)
+
+		
+		bot.register_next_step_handler(message,timetable_dct,amount)
+
+	@bot.message_handler(content_types=['text'])
+	def timetable_dct(message,amount):
+		print(3)
+		dct_lessons={}
+
+		for i in range(amount):
+		
+			user_inp = math,16.40,qweqwe,12.50
+
+			user_inp.split(',')
+			for i step(2)
+				dctp[user_inpp[i]]=user_inp[i+1]
 
 
-				for i in range(amount):
-				
-					bot.send_message(message.chat.id,"Enter lessons")
-					lesson=message.text
-					
-					bot.send_message(message.chat.id,"Enter time")
-					
-					dct_lessons[lesson]=message.text
+			bot.send_message(message.chat.id,"Enter lessons")
+			lesson=message.text
+			
+			bot.send_message(message.chat.id,"Enter time")
+			
+			dct_lessons[lesson]=message.text
 
-					
+			
 
-				bot.send_message(message.chat.id, dict)
+		bot.send_message(message.chat.id, dict)
 			
 
 
