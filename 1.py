@@ -47,52 +47,26 @@ def shedule(message):
 def get_message(message):
 	
 	bot.send_message(message.chat.id,"Enter day:")
-	@bot.message_handler(content_types=['text'])
-	def get_message(message):
-		print(1)
-
-		
-		day = message.text
-
-		bot.send_message(message.chat.id,"Enter amount  lessons")
-		
-		bot.register_next_step_handler(message,amount_lessons_getter)
+	bot.register_next_step_handler(message,get_message)
+def get_message(message):
+	print(1)
 	
-	def amount_lessons_getter(message):
-		print(2)
+	day = message.text
 		
-		
-		amount = int(message.text)
+	print(day)
+	bot.send_message(message.chat.id,	
+		"Enter lessons and time:\n"
+		"(Example: Math,15:00,Chemistry,16:45,...)")
 
-		
-		bot.register_next_step_handler(message,timetable_dct,amount)
+	bot.register_next_step_handler(message,get_lessons_and_time)
+def get_lessons_and_time(message):
+	dict_lessons = {}
+	user_info = message.text
+	us_info_split = user_info.split(',')
+	bot.send_message(message.chat.id, us_info_split)
+	print(us_info_split)
 
-	@bot.message_handler(content_types=['text'])
-	def timetable_dct(message,amount):
-		print(3)
-		dct_lessons={}
-
-		for i in range(amount):
-		
-			user_inp = math,16.40,qweqwe,12.50
-
-			user_inp.split(',')
-			for i step(2)
-				dctp[user_inpp[i]]=user_inp[i+1]
-
-
-			bot.send_message(message.chat.id,"Enter lessons")
-			lesson=message.text
-			
-			bot.send_message(message.chat.id,"Enter time")
-			
-			dct_lessons[lesson]=message.text
-
-			
-
-		bot.send_message(message.chat.id, dict)
-			
-
-
-
+	for i in range(0,len(us_info_split),2):
+		dict_lessons[user_info[i]]=user_info[i+1]
+	print(dict_lessons)
 bot.polling()
