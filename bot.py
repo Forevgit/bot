@@ -2,6 +2,8 @@ import telebot
 
 import requests
 
+from dateb import*
+
 from telebot import types
 
 
@@ -12,11 +14,11 @@ API_TOKEN = '5371686399:AAEnXevd0OcJsHeNmB5DFflPQ3K_91jPwv0'
 bot = telebot.TeleBot(API_TOKEN)
 
 
-@bot.message_handler(commands=['start'])
+@bot.message_handler(commands=['Start'])
 def welcome(message):
 		bot.send_message(message.chat.id,'Hello, im bot for your timetable, use "/help" to see my options')
 
-@bot.message_handler(commands = ['help'])
+@bot.message_handler(commands = ['Help'])
 def help(message):
 	bot.send_message(message.chat.id, """Available Commands :-
 	/link - To get the Link to a class
@@ -38,10 +40,8 @@ def info(message):
 
 @bot.message_handler(commands = ['Shedule'])
 def shedule(message):
-	bot.send_message(message.chat.id,
-		day)
-
-
+	for i in range(len(Infors)):
+		bot.send_message(message.chat.id, Infors[i])
 
 @bot.message_handler(commands = ['Add'])
 def get_message(message):
@@ -49,24 +49,24 @@ def get_message(message):
 	bot.send_message(message.chat.id,"Enter day:")
 	bot.register_next_step_handler(message,get_message)
 def get_message(message):
-	print(1)
-	
 	day = message.text
-		
-	print(day)
+
 	bot.send_message(message.chat.id,	
-		"Enter lessons and time:\n"
-		"(Example: Math,15:00,Chemistry,16:45,...)")
+		"""Enter lessons, time, link:
+		(Example: Math,15:00,/https://link,Chemistry,16:45,/https://link,...)""")
 
-	bot.register_next_step_handler(message,get_lessons_and_time)
-def get_lessons_and_time(message):
-	dict_lessons = {}
-	user_info = message.text
-	us_info_split = user_info.split(',')
-	bot.send_message(message.chat.id, us_info_split)
-	print(us_info_split)
+	bot.register_next_step_handler(message,get_lessons_and_time, day=day)
 
-	for i in range(0,len(us_info_split),2):
-		dict_lessons[user_info[i]]=user_info[i+1]
-	print(dict_lessons)
+def get_lessons_and_time(message,day):
+	#dict_lessons = {}
+	user_input = message.text
+	user_input = user_input.split(',')
+
+	#for i in range(0,len(user_input),2):
+	#	dict_lessons[user_input[i]]=user_input[i+1]
+	#print(dict_lessons)
+	bot.send_message(message.chat.id, f"Your shedule on {day}")
+	for i in range(0,len(user_input),3):
+		bot.send_message(message.chat.id, f'{user_input[i]} {user_input[i+1]} {user_input[i+2]}')
+	print(day)
 bot.polling()

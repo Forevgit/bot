@@ -1,4 +1,5 @@
 import pymysql
+from bot import*
 from config import host, user, password, db_name
 
 Links = list()
@@ -41,5 +42,4 @@ try:
 except Exception as ex:
 	print("Connection refused")
 	print(ex)
-
-
+ 
