@@ -58,13 +58,11 @@ def get_message(message):
 	bot.register_next_step_handler(message,get_lessons_and_time, day=day)
 
 def get_lessons_and_time(message,day):
-	#dict_lessons = {}
+	
 	user_input = message.text
 	user_input = user_input.split(',')
 
-	#for i in range(0,len(user_input),2):
-	#	dict_lessons[user_input[i]]=user_input[i+1]
-	#print(dict_lessons)
+	
 	bot.send_message(message.chat.id, f"Your shedule on {day}")
 	for i in range(0,len(user_input),3):
 		bot.send_message(message.chat.id, f'{user_input[i]} {user_input[i+1]} {user_input[i+2]}')
