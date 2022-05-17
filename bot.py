@@ -2,9 +2,10 @@ import telebot
 
 import requests
 
-from dateb import*
+from dateb import *
 
 from telebot import types
+
 
 
 
@@ -12,6 +13,7 @@ from telebot import types
 API_TOKEN = '5371686399:AAEnXevd0OcJsHeNmB5DFflPQ3K_91jPwv0'
 
 bot = telebot.TeleBot(API_TOKEN)
+
 
 
 @bot.message_handler(commands=['Start'])
@@ -40,8 +42,8 @@ def info(message):
 
 @bot.message_handler(commands = ['Shedule'])
 def shedule(message):
-	for i in range(len(Infors)):
-		bot.send_message(message.chat.id, Infors[i])
+	for i in range(len(Shedules)):
+		bot.send_message(message.chat.id, ",".join(Shedules[i]))
 
 @bot.message_handler(commands = ['Add'])
 def get_message(message):
@@ -53,7 +55,7 @@ def get_message(message):
 
 	bot.send_message(message.chat.id,	
 		"""Enter lessons, time, link:
-		(Example: Math,15:00,/https://link,Chemistry,16:45,/https://link,...)""")
+		(Example: Math,15:00,/Link..,Chemistry,16:45,/Link..,...)""")
 
 	bot.register_next_step_handler(message,get_lessons_and_time, day=day)
 
@@ -66,5 +68,6 @@ def get_lessons_and_time(message,day):
 	bot.send_message(message.chat.id, f"Your shedule on {day}")
 	for i in range(0,len(user_input),3):
 		bot.send_message(message.chat.id, f'{user_input[i]} {user_input[i+1]} {user_input[i+2]}')
-	print(day)
+	input_bd(user_input)
+
 bot.polling()
